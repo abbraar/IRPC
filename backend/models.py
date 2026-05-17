@@ -3,7 +3,7 @@
 from datetime import date
 from typing import Any, Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, computed_field
 
 
 # --- Core entities (synthetic / future real API shapes) ---
@@ -121,10 +121,9 @@ class AnalyzeResponse(BaseModel):
 
 class LocationAnalysisInput(BaseModel):
     """
-    Manual analysis input from the frontend.
+    Manual analysis input (WGS84 coordinates).
 
-    Coordinates follow the normal WGS84 convention:
-    latitude is north/south and longitude is east/west.
+    latitude is north/south; longitude is east/west.
     """
 
     longitude: float
@@ -134,6 +133,51 @@ class LocationAnalysisInput(BaseModel):
     start_date: date
     end_date: date
     language: Literal["en", "ar"] = "en"
+    use_synthetic_context: bool = Field(
+        default=True,
+        description="When true, merge demo synthetic assets/projects/incidents around the coordinate.",
+    )
+    use_ai_narrative: bool = Field(
+        default=True,
+        description="When true, attempt Gemini narrative if configured; always falls back deterministically.",
+    )
+
+
+class InfrastructureOverlapDetail(BaseModel):
+    asset_id: str
+    type: str
+    latitude: float
+    longitude: float
+    distance_meters: float
+    asset_depth: float
+    criticality: str
+    influence_radius: float
+    sensitivity_score: float
+    depth_conflict: bool
+    severity: Literal["Low", "Medium", "High"]
+
+
+class ProjectOverlapDetail(BaseModel):
+    project_id: str
+    name: str
+    latitude: float
+    longitude: float
+    distance_meters: float
+    radius_meters: float
+    status: str
+    severity: Literal["Low", "Medium", "High"]
+    has_temporal_overlap: bool
+    overlap_days: int
+
+
+class TemporalOverlapDetail(BaseModel):
+    project_id: str
+    name: str
+    start_date: str
+    end_date: str
+    overlap_days: int
+    spatial_overlap: bool
+    severity: Literal["Low", "Medium", "High"]
 
 
 class LocationAnalysisResponse(BaseModel):
@@ -142,18 +186,30 @@ class LocationAnalysisResponse(BaseModel):
     risk_level: Literal["Low", "Medium", "High"]
     risk_level_label: str
     is_risky: bool
-    conflicts: list[dict[str, Any]]
+    detected_conflicts: DetectedConflicts
     context_infrastructure: list[InfrastructureAsset] = Field(default_factory=list)
     context_projects: list[Project] = Field(default_factory=list)
     context_incidents: list[HistoricalIncident] = Field(default_factory=list)
     neighborhood_context: dict[str, Any] = Field(default_factory=dict)
-    project_overlaps: list[dict[str, Any]]
-    infrastructure_overlaps: list[dict[str, Any]]
-    temporal_overlaps: list[dict[str, Any]]
+    project_overlaps: list[ProjectOverlapDetail]
+    infrastructure_overlaps: list[InfrastructureOverlapDetail]
+    temporal_overlaps: list[TemporalOverlapDetail]
     explanation: str
     recommendations: list[RecommendationItem]
     confidence_score: float = Field(default=0.75, ge=0, le=1)
+    confidence_rationale: str = ""
     contributing_factors: list[ContributingFactor] = Field(default_factory=list)
+    narrative_source: Literal["gemini", "deterministic", "location_template"] = "deterministic"
+
+    @computed_field  # type: ignore[prop-decorator]
+    @property
+    def conflicts(self) -> list[dict[str, Any]]:
+        """Legacy flattened conflict list (kind + overlap fields) for existing web clients."""
+        return [
+            *[{"kind": "infrastructure", **item.model_dump(mode="json")} for item in self.infrastructure_overlaps],
+            *[{"kind": "project", **item.model_dump(mode="json")} for item in self.project_overlaps],
+            *[{"kind": "temporal", **item.model_dump(mode="json")} for item in self.temporal_overlaps],
+        ]
 
 
 class DashboardSummary(BaseModel):

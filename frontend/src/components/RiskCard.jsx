@@ -3,6 +3,13 @@ import { riskLabel } from "../i18n.js";
 import { getRiskTheme, riskCssVars } from "../riskTheme.js";
 
 const factorLabelKey = {
+  geometry_depth: "depth",
+  geometry_radius: "workRadius",
+  utility_proximity: "infrastructure",
+  project_site_pressure: "projects",
+  schedule_overlap: "temporal",
+  overlapping_projects: "spatialTemporal",
+  incident_history: "incidents",
   manual_infrastructure_overlap: "infrastructure",
   manual_depth: "depth",
   manual_radius: "workRadius",

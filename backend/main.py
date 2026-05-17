@@ -28,17 +28,9 @@ from models import (
     LocationAnalysisInput,
     LocationAnalysisResponse,
 )
-from services.conflict_detection import detect_conflicts
-from services.explainability import build_explanation
-from services.gemini_service import (
-    GeminiServiceError,
-    generate_explanation,
-    generate_recommendations,
-    narrative_layer_status,
-)
+from services.analysis_pipeline import run_core_analysis, run_excavation_analysis
 from services.location_analysis import analyze_manual_location
-from services.recommendation import recommend
-from services.risk_scoring import compute_risk
+from services.narrative_provider import narrative_layer_status
 
 DATA_PATH = Path(__file__).resolve().parent / "data" / "fake_data.json"
 logger = logging.getLogger(__name__)
@@ -62,13 +54,19 @@ def _parse_csv_origins(value: str) -> list[str]:
     return origins
 
 
+def _configured_origins() -> list[str]:
+    """ALLOWED_ORIGINS or FRONTEND_ORIGIN (comma-separated browser origins)."""
+    raw = os.environ.get("ALLOWED_ORIGINS") or os.environ.get("FRONTEND_ORIGIN") or ""
+    return _parse_csv_origins(raw)
+
+
 def _cors_allow_origins() -> list[str]:
     environment = (os.environ.get("ENVIRONMENT") or "").strip().lower()
-    configured = _parse_csv_origins(os.environ.get("FRONTEND_ORIGIN") or "")
+    configured = _configured_origins()
     if environment == "production":
         if not configured:
             logger.warning(
-                "ENVIRONMENT=production but FRONTEND_ORIGIN is empty; "
+                "ENVIRONMENT=production but ALLOWED_ORIGINS/FRONTEND_ORIGIN is empty; "
                 "browser clients on another origin will fail CORS until it is set."
             )
         return configured
@@ -81,7 +79,7 @@ def _cors_allow_origins() -> list[str]:
     return merged
 
 
-app = FastAPI(title="Excavation Risk Digital Twin", version="0.1.0")
+app = FastAPI(title="Excavation Risk Digital Twin", version="0.2.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -145,30 +143,15 @@ def analyze(excavation_id: str) -> AnalyzeResponse:
         logger.warning("API error: analyze requested for unknown excavation (id=%s)", excavation_id)
         raise HTTPException(status_code=404, detail="Excavation not found")
 
-    conflicts = detect_conflicts(excavation, store.infrastructure, store.projects)
-    risk = compute_risk(excavation, conflicts, store.infrastructure, store.projects, store.incidents)
-
-    try:
-        explanation = generate_explanation(excavation, conflicts, risk)
-        recommendations = generate_recommendations(excavation, conflicts, risk)
-    except GeminiServiceError as exc:
-        logger.warning("Gemini fallback triggered for %s: %s", excavation_id, exc)
-        explanation = build_explanation(excavation, conflicts, risk)
-        recommendations = recommend(risk, conflicts)
-    except Exception as exc:
-        logger.exception("Gemini fallback triggered after unexpected API error for %s: %s", excavation_id, exc)
-        explanation = build_explanation(excavation, conflicts, risk)
-        recommendations = recommend(risk, conflicts)
-
-    _last_analyzed_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-
-    return AnalyzeResponse(
-        excavation=excavation,
-        conflicts=conflicts,
-        risk=risk,
-        explanation=explanation,
-        recommendations=recommendations,
+    result = run_excavation_analysis(
+        excavation,
+        store.infrastructure,
+        store.projects,
+        store.incidents,
+        use_ai_narrative=True,
     )
+    _last_analyzed_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    return result
 
 
 @app.post("/analyze-location", response_model=LocationAnalysisResponse)
@@ -187,9 +170,8 @@ def analyze_location(payload: LocationAnalysisInput, lang: Literal["en", "ar"] |
 
 def _risk_level_for_excavation(exc: ExcavationRequest) -> str:
     store = get_store()
-    c = detect_conflicts(exc, store.infrastructure, store.projects)
-    r = compute_risk(exc, c, store.infrastructure, store.projects, store.incidents)
-    return r.risk_level
+    _conflicts, risk = run_core_analysis(exc, store.infrastructure, store.projects, store.incidents)
+    return risk.risk_level
 
 
 @app.get("/dashboard-summary", response_model=DashboardSummary)
@@ -237,5 +219,4 @@ def health():
 
 @app.get("/ai-narrative-status")
 def ai_narrative_status():
-    status = narrative_layer_status()
-    return {"status": status}
+    return {"status": narrative_layer_status()}

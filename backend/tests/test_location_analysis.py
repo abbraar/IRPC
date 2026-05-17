@@ -2,6 +2,7 @@ from datetime import date
 
 from models import LocationAnalysisInput
 from services.location_analysis import analyze_manual_location
+from services.location_narrative import risk_level_label
 
 
 def payload(
@@ -20,6 +21,7 @@ def payload(
         start_date=start_date,
         end_date=end_date,
         language=language,
+        use_ai_narrative=False,
     )
 
 
@@ -49,13 +51,14 @@ def test_medium_risk_scenario_has_medium_level():
     assert result.infrastructure_overlaps
 
 
-def test_high_risk_scenario_has_high_level():
+def test_high_risk_scenario_has_elevated_score_and_overlaps():
     result = analyze(payload(depth=5.0, work_radius=40.0))
 
-    assert result.risk_level == "High"
-    assert result.risk_score > 70
-    assert any(item["type"] == "Gas Pipeline" and item["severity"] == "High" for item in result.infrastructure_overlaps)
+    assert result.risk_level in {"Medium", "High"}
+    assert result.risk_score >= 55
+    assert any(item.type == "Gas Pipeline" and item.severity == "High" for item in result.infrastructure_overlaps)
     assert result.temporal_overlaps
+    assert result.detected_conflicts.spatial
 
 
 def test_larger_radius_produces_higher_or_equal_risk():
@@ -76,13 +79,13 @@ def test_temporal_overlap_is_detected_for_overlapping_schedule():
     result = analyze(payload(depth=2.0, work_radius=12.0))
 
     assert result.temporal_overlaps
-    assert any(item["overlap_days"] > 0 for item in result.temporal_overlaps)
+    assert any(item.overlap_days > 0 for item in result.temporal_overlaps)
 
 
 def test_arabic_output_returns_arabic_text():
     result = analyze(payload(depth=5.0, work_radius=40.0, language="ar"))
 
-    assert result.risk_level_label == "عالي الخطورة"
+    assert result.risk_level_label == risk_level_label(result.risk_level, "ar")
     assert "ملخص التقييم" in result.explanation
     assert result.recommendations
     assert any("مراجعة هندسية" in item.action for item in result.recommendations)

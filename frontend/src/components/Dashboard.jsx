@@ -520,7 +520,7 @@ export default function Dashboard() {
         risk_score: analysis.risk_score,
         risk_level: analysis.risk_level,
         confidence_score: analysis.confidence_score,
-        confidence_rationale: t("confidenceLocal"),
+        confidence_rationale: analysis.confidence_rationale || t("confidenceLocal"),
         contributing_factors: analysis.contributing_factors,
         risk_level_label: analysis.risk_level_label,
       }

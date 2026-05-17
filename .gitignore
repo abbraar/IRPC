@@ -2,8 +2,12 @@ backend/.venv/
 backend/.env
 backend/__pycache__/
 backend/**/__pycache__/
+backend/.pytest_cache/
+**/.pytest_cache/
 frontend/node_modules/
 frontend/dist/
 frontend/.env.development.local
 *.pyc
 .DS_Store
+excavation-risk-backend-poc.zip
+*.zip
