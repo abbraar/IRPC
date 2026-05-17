@@ -1,0 +1,550 @@
+{
+  "excavations": [
+    {
+      "request_id": "EXC-1000",
+      "latitude": 24.826307,
+      "longitude": 46.673916,
+      "depth": 0.88,
+      "radius_meters": 5.9,
+      "start_date": "2026-06-07",
+      "end_date": "2026-06-24",
+      "excavation_type": "Sheet Pile",
+      "contractor_name": "GeoSafe BV"
+    },
+    {
+      "request_id": "EXC-1001",
+      "latitude": 24.829144,
+      "longitude": 46.675824,
+      "depth": 1.85,
+      "radius_meters": 11.9,
+      "start_date": "2026-05-22",
+      "end_date": "2026-06-25",
+      "excavation_type": "Trenchless",
+      "contractor_name": "Delta Infra"
+    },
+    {
+      "request_id": "EXC-1002",
+      "latitude": 24.829571,
+      "longitude": 46.674099,
+      "depth": 4.93,
+      "radius_meters": 16.6,
+      "start_date": "2026-05-31",
+      "end_date": "2026-07-11",
+      "excavation_type": "Open Cut",
+      "contractor_name": "Delta Infra"
+    },
+    {
+      "request_id": "EXC-1003",
+      "latitude": 24.829018,
+      "longitude": 46.679759,
+      "depth": 1.86,
+      "radius_meters": 4.9,
+      "start_date": "2026-06-21",
+      "end_date": "2026-06-29",
+      "excavation_type": "Potholing",
+      "contractor_name": "HarborWorks"
+    },
+    {
+      "request_id": "EXC-1004",
+      "latitude": 24.825568,
+      "longitude": 46.673563,
+      "depth": 2.24,
+      "radius_meters": 11.3,
+      "start_date": "2026-05-09",
+      "end_date": "2026-06-11",
+      "excavation_type": "Potholing",
+      "contractor_name": "Delta Infra"
+    },
+    {
+      "request_id": "EXC-1005",
+      "latitude": 24.830678,
+      "longitude": 46.673857,
+      "depth": 3.15,
+      "radius_meters": 4.2,
+      "start_date": "2026-04-29",
+      "end_date": "2026-06-13",
+      "excavation_type": "Open Cut",
+      "contractor_name": "Delta Infra"
+    },
+    {
+      "request_id": "EXC-1006",
+      "latitude": 24.827069,
+      "longitude": 46.679147,
+      "depth": 4.81,
+      "radius_meters": 15.8,
+      "start_date": "2026-05-21",
+      "end_date": "2026-07-01",
+      "excavation_type": "Open Cut",
+      "contractor_name": "GeoSafe BV"
+    },
+    {
+      "request_id": "EXC-1007",
+      "latitude": 24.83124,
+      "longitude": 46.679698,
+      "depth": 1.9,
+      "radius_meters": 9.0,
+      "start_date": "2026-06-15",
+      "end_date": "2026-07-10",
+      "excavation_type": "Sheet Pile",
+      "contractor_name": "GeoSafe BV"
+    }
+  ],
+  "infrastructure": [
+    {
+      "asset_id": "AST-2000",
+      "type": "Gas Pipeline",
+      "latitude": 24.828352,
+      "longitude": 46.676272,
+      "depth": 1.65,
+      "criticality": "High",
+      "influence_radius": 14.0,
+      "sensitivity_score": 98.0
+    },
+    {
+      "asset_id": "AST-2001",
+      "type": "Water Pipe",
+      "latitude": 24.828243,
+      "longitude": 46.676381,
+      "depth": 2.1,
+      "criticality": "Medium",
+      "influence_radius": 10.0,
+      "sensitivity_score": 72.0
+    },
+    {
+      "asset_id": "AST-2002",
+      "type": "Electrical Cable",
+      "latitude": 24.828272,
+      "longitude": 46.676163,
+      "depth": 1.35,
+      "criticality": "High",
+      "influence_radius": 12.0,
+      "sensitivity_score": 93.0
+    },
+    {
+      "asset_id": "AST-2003",
+      "type": "Telecom Line",
+      "latitude": 24.828454,
+      "longitude": 46.676062,
+      "depth": 1.0,
+      "criticality": "Low",
+      "influence_radius": 7.0,
+      "sensitivity_score": 44.0
+    },
+    {
+      "asset_id": "AST-2004",
+      "type": "Gas Pipeline",
+      "latitude": 24.829585,
+      "longitude": 46.674129,
+      "depth": 1.31,
+      "criticality": "High",
+      "influence_radius": 11.7,
+      "sensitivity_score": 96.3
+    },
+    {
+      "asset_id": "AST-2005",
+      "type": "Electrical Cable",
+      "latitude": 24.829579,
+      "longitude": 46.674134,
+      "depth": 1.54,
+      "criticality": "High",
+      "influence_radius": 13.7,
+      "sensitivity_score": 96.0
+    },
+    {
+      "asset_id": "AST-2006",
+      "type": "Gas Pipeline",
+      "latitude": 24.8295,
+      "longitude": 46.674141,
+      "depth": 2.08,
+      "criticality": "High",
+      "influence_radius": 12.1,
+      "sensitivity_score": 94.3
+    },
+    {
+      "asset_id": "AST-2007",
+      "type": "Gas Pipeline",
+      "latitude": 24.827068,
+      "longitude": 46.679124,
+      "depth": 1.45,
+      "criticality": "High",
+      "influence_radius": 14.9,
+      "sensitivity_score": 96.6
+    },
+    {
+      "asset_id": "AST-2008",
+      "type": "Electrical Cable",
+      "latitude": 24.827108,
+      "longitude": 46.679135,
+      "depth": 1.71,
+      "criticality": "High",
+      "influence_radius": 14.0,
+      "sensitivity_score": 92.1
+    },
+    {
+      "asset_id": "AST-2009",
+      "type": "Gas Pipeline",
+      "latitude": 24.827014,
+      "longitude": 46.679147,
+      "depth": 2.74,
+      "criticality": "High",
+      "influence_radius": 13.7,
+      "sensitivity_score": 95.4
+    },
+    {
+      "asset_id": "AST-2010",
+      "type": "Telecom Line",
+      "latitude": 24.826348,
+      "longitude": 46.673932,
+      "depth": 0.9,
+      "criticality": "Low",
+      "influence_radius": 6.4,
+      "sensitivity_score": 69.7
+    },
+    {
+      "asset_id": "AST-2011",
+      "type": "Water Pipe",
+      "latitude": 24.826233,
+      "longitude": 46.673955,
+      "depth": 0.9,
+      "criticality": "High",
+      "influence_radius": 9.7,
+      "sensitivity_score": 94.9
+    },
+    {
+      "asset_id": "AST-2012",
+      "type": "Gas Pipeline",
+      "latitude": 24.828997,
+      "longitude": 46.675916,
+      "depth": 1.1,
+      "criticality": "Medium",
+      "influence_radius": 7.9,
+      "sensitivity_score": 79.1
+    },
+    {
+      "asset_id": "AST-2013",
+      "type": "Electrical Cable",
+      "latitude": 24.829197,
+      "longitude": 46.675842,
+      "depth": 2.96,
+      "criticality": "High",
+      "influence_radius": 7.4,
+      "sensitivity_score": 65.4
+    },
+    {
+      "asset_id": "AST-2014",
+      "type": "Water Pipe",
+      "latitude": 24.829019,
+      "longitude": 46.679552,
+      "depth": 3.04,
+      "criticality": "Medium",
+      "influence_radius": 9.1,
+      "sensitivity_score": 50.6
+    },
+    {
+      "asset_id": "AST-2015",
+      "type": "Telecom Line",
+      "latitude": 24.825547,
+      "longitude": 46.673513,
+      "depth": 2.71,
+      "criticality": "Medium",
+      "influence_radius": 9.4,
+      "sensitivity_score": 39.5
+    },
+    {
+      "asset_id": "AST-2016",
+      "type": "Telecom Line",
+      "latitude": 24.830776,
+      "longitude": 46.673976,
+      "depth": 3.4,
+      "criticality": "High",
+      "influence_radius": 10.2,
+      "sensitivity_score": 75.1
+    },
+    {
+      "asset_id": "AST-2017",
+      "type": "Electrical Cable",
+      "latitude": 24.830719,
+      "longitude": 46.673984,
+      "depth": 3.41,
+      "criticality": "Low",
+      "influence_radius": 6.9,
+      "sensitivity_score": 27.6
+    },
+    {
+      "asset_id": "AST-2018",
+      "type": "Electrical Cable",
+      "latitude": 24.828322,
+      "longitude": 46.674189,
+      "depth": 2.67,
+      "criticality": "Medium",
+      "influence_radius": 9.2,
+      "sensitivity_score": 64.3
+    },
+    {
+      "asset_id": "AST-2019",
+      "type": "Electrical Cable",
+      "latitude": 24.82592,
+      "longitude": 46.676258,
+      "depth": 2.52,
+      "criticality": "High",
+      "influence_radius": 5.5,
+      "sensitivity_score": 75.0
+    },
+    {
+      "asset_id": "AST-2020",
+      "type": "Electrical Cable",
+      "latitude": 24.827851,
+      "longitude": 46.678152,
+      "depth": 3.34,
+      "criticality": "High",
+      "influence_radius": 10.3,
+      "sensitivity_score": 81.9
+    },
+    {
+      "asset_id": "AST-2021",
+      "type": "Water Pipe",
+      "latitude": 24.826999,
+      "longitude": 46.673993,
+      "depth": 1.32,
+      "criticality": "Low",
+      "influence_radius": 8.9,
+      "sensitivity_score": 41.0
+    },
+    {
+      "asset_id": "AST-2022",
+      "type": "Telecom Line",
+      "latitude": 24.829406,
+      "longitude": 46.674981,
+      "depth": 1.61,
+      "criticality": "Medium",
+      "influence_radius": 10.5,
+      "sensitivity_score": 68.8
+    },
+    {
+      "asset_id": "AST-2023",
+      "type": "Water Pipe",
+      "latitude": 24.826961,
+      "longitude": 46.677617,
+      "depth": 2.95,
+      "criticality": "Low",
+      "influence_radius": 9.1,
+      "sensitivity_score": 22.5
+    }
+  ],
+  "projects": [
+    {
+      "project_id": "PRJ-3000",
+      "name": "Ongoing Road Renewal #1",
+      "latitude": 24.828383,
+      "longitude": 46.676405,
+      "radius_meters": 28.0,
+      "start_date": "2026-05-20",
+      "end_date": "2026-06-10",
+      "status": "Active"
+    },
+    {
+      "project_id": "PRJ-3001",
+      "name": "Water Network Maintenance #2",
+      "latitude": 24.82805,
+      "longitude": 46.676076,
+      "radius_meters": 22.0,
+      "start_date": "2026-05-08",
+      "end_date": "2026-05-28",
+      "status": "Active"
+    },
+    {
+      "project_id": "PRJ-3002",
+      "name": "Telecom Duct Survey #3",
+      "latitude": 24.828593,
+      "longitude": 46.675713,
+      "radius_meters": 18.0,
+      "start_date": "2026-06-05",
+      "end_date": "2026-06-22",
+      "status": "Planning"
+    },
+    {
+      "project_id": "PRJ-3003",
+      "name": "Emergency Gas Valve Replacement #4",
+      "latitude": 24.829506,
+      "longitude": 46.674014,
+      "radius_meters": 30.9,
+      "start_date": "2026-05-31",
+      "end_date": "2026-07-04",
+      "status": "Active"
+    },
+    {
+      "project_id": "PRJ-3004",
+      "name": "Feeder Cable Diversion #5",
+      "latitude": 24.829621,
+      "longitude": 46.673963,
+      "radius_meters": 25.3,
+      "start_date": "2026-05-30",
+      "end_date": "2026-07-01",
+      "status": "Active"
+    },
+    {
+      "project_id": "PRJ-3005",
+      "name": "Storm Main Tie-in #6",
+      "latitude": 24.829412,
+      "longitude": 46.67428,
+      "radius_meters": 29.1,
+      "start_date": "2026-06-05",
+      "end_date": "2026-06-23",
+      "status": "Active"
+    },
+    {
+      "project_id": "PRJ-3006",
+      "name": "Emergency Gas Valve Replacement #7",
+      "latitude": 24.827107,
+      "longitude": 46.679056,
+      "radius_meters": 28.8,
+      "start_date": "2026-05-18",
+      "end_date": "2026-06-11",
+      "status": "Active"
+    },
+    {
+      "project_id": "PRJ-3007",
+      "name": "Feeder Cable Diversion #8",
+      "latitude": 24.827202,
+      "longitude": 46.679057,
+      "radius_meters": 28.1,
+      "start_date": "2026-05-24",
+      "end_date": "2026-06-21",
+      "status": "Active"
+    },
+    {
+      "project_id": "PRJ-3008",
+      "name": "Fiber Ring East #9",
+      "latitude": 24.829502,
+      "longitude": 46.674197,
+      "radius_meters": 18.0,
+      "start_date": "2026-06-05",
+      "end_date": "2026-07-20",
+      "status": "On hold"
+    },
+    {
+      "project_id": "PRJ-3009",
+      "name": "Tram Power Upgrade #10",
+      "latitude": 24.825232,
+      "longitude": 46.673817,
+      "radius_meters": 23.5,
+      "start_date": "2026-05-06",
+      "end_date": "2026-06-16",
+      "status": "Active"
+    }
+  ],
+  "incidents": [
+    {
+      "incident_id": "INC-2300FA25",
+      "latitude": 24.828144,
+      "longitude": 46.676353,
+      "incident_type": "Third-party strike",
+      "severity": "Critical",
+      "related_asset_type": "Gas Pipeline"
+    },
+    {
+      "incident_id": "INC-2DF93396",
+      "latitude": 24.82824,
+      "longitude": 46.675776,
+      "incident_type": "Unknown utility",
+      "severity": "High",
+      "related_asset_type": "Electrical Cable"
+    },
+    {
+      "incident_id": "INC-68C2B857",
+      "latitude": 24.828923,
+      "longitude": 46.676488,
+      "incident_type": "Flooding",
+      "severity": "Medium",
+      "related_asset_type": "Water Pipe"
+    },
+    {
+      "incident_id": "INC-D2F7D243",
+      "latitude": 24.829597,
+      "longitude": 46.673862,
+      "incident_type": "Third-party strike",
+      "severity": "Critical",
+      "related_asset_type": "Gas Pipeline"
+    },
+    {
+      "incident_id": "INC-4F3861AC",
+      "latitude": 24.829347,
+      "longitude": 46.673866,
+      "incident_type": "Unknown utility",
+      "severity": "High",
+      "related_asset_type": "Electrical Cable"
+    },
+    {
+      "incident_id": "INC-EEEECCEC",
+      "latitude": 24.829903,
+      "longitude": 46.674427,
+      "incident_type": "Shallow miss-locate",
+      "severity": "High",
+      "related_asset_type": "Gas Pipeline"
+    },
+    {
+      "incident_id": "INC-62CA5774",
+      "latitude": 24.827147,
+      "longitude": 46.678987,
+      "incident_type": "Third-party strike",
+      "severity": "Critical",
+      "related_asset_type": "Gas Pipeline"
+    },
+    {
+      "incident_id": "INC-22B74030",
+      "latitude": 24.827289,
+      "longitude": 46.678712,
+      "incident_type": "Unknown utility",
+      "severity": "High",
+      "related_asset_type": "Electrical Cable"
+    },
+    {
+      "incident_id": "INC-526AE651",
+      "latitude": 24.827118,
+      "longitude": 46.678621,
+      "incident_type": "Shallow miss-locate",
+      "severity": "High",
+      "related_asset_type": "Gas Pipeline"
+    },
+    {
+      "incident_id": "INC-6B8B6381",
+      "latitude": 24.824796,
+      "longitude": 46.674016,
+      "incident_type": "Overpressure",
+      "severity": "Low",
+      "related_asset_type": "Gas Pipeline"
+    },
+    {
+      "incident_id": "INC-6407A633",
+      "latitude": 24.826104,
+      "longitude": 46.67373,
+      "incident_type": "Flooding",
+      "severity": "Medium",
+      "related_asset_type": "Gas Pipeline"
+    },
+    {
+      "incident_id": "INC-E39579B9",
+      "latitude": 24.82484,
+      "longitude": 46.673532,
+      "incident_type": "Unknown utility",
+      "severity": "High",
+      "related_asset_type": "Electrical Cable"
+    },
+    {
+      "incident_id": "INC-F02AEDA0",
+      "latitude": 24.82889,
+      "longitude": 46.675043,
+      "incident_type": "Unknown utility",
+      "severity": "Low",
+      "related_asset_type": "Water Pipe"
+    },
+    {
+      "incident_id": "INC-424078B9",
+      "latitude": 24.82619,
+      "longitude": 46.679099,
+      "incident_type": "Shallow miss-locate",
+      "severity": "High",
+      "related_asset_type": "Electrical Cable"
+    }
+  ]
+}
